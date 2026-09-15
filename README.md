@@ -29,7 +29,7 @@ data/
   *_efficiency.json    efficiency measurements
 ```
 
-The repository includes the complete released **derived experimental dataset** (about 22 MB). Raw MedMNIST images are distributed by the dataset authors and are not duplicated in this Git repository.
+The repository includes the complete released **derived experimental dataset** (about 19 MB). Raw MedMNIST images are distributed by the dataset authors and are not duplicated in this Git repository.
 
 ## Raw datasets
 
