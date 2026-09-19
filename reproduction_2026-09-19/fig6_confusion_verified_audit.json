@@ -1,0 +1,31 @@
+{
+  "dermamnist": {
+    "n": 2005,
+    "accuracy": 0.774064837905237,
+    "matrix_row_sums": [
+      1.0000000000000002,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "prediction_file": "reproduction_2026-09-19/dermamnist/attempt_4_portable/predictions.npz"
+  },
+  "bloodmnist": {
+    "n": 3421,
+    "accuracy": 0.974568839520608,
+    "matrix_row_sums": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      0.9999999999999999,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "prediction_file": "reproduction_2026-09-19/bloodmnist/attempt_2_portable/predictions.npz"
+  }
+}

@@ -6,6 +6,7 @@ Run after run_experiments.py / run_analysis.py.
 """
 import json
 import os
+from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
@@ -17,9 +18,9 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 from sklearn.manifold import TSNE
 from sklearn.metrics import confusion_matrix
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA = os.path.join(ROOT, "data")
-FIG = os.path.join(ROOT, "figures")
+ROOT = Path(__file__).resolve().parents[1]
+DATA = os.environ.get("KGLCD_DATA", str(ROOT / "data"))
+FIG = os.environ.get("KGLCD_FIGURES", str(ROOT / "figures"))
 os.makedirs(FIG, exist_ok=True)
 
 plt.rcParams.update({
@@ -290,7 +291,17 @@ def fig_confusion(ds_list=("dermamnist", "bloodmnist"), seed=0):
             DATA, f"{ds}_seed{seed}_results.json")))
         names = res["class_names"]
         f = np.load(os.path.join(DATA, f"{ds}_seed{seed}_emb.npz"))
-        ours = np.load(os.path.join(DATA, f"{ds}_seed{seed}_ours.npz"))
+        verified_attempt = ("attempt_4_portable" if ds == "dermamnist"
+                            else "attempt_2_portable")
+        verified = (ROOT / "reproduction_2026-09-19" / ds /
+                    verified_attempt / "predictions.npz")
+        prediction_path = (verified if seed == 0 and verified.exists() else
+                           Path(DATA) / f"{ds}_seed{seed}_ours.npz")
+        ours = np.load(prediction_path)
+        actual_acc = float(np.mean(f["test_y"] == ours["pred"]))
+        if not np.isclose(actual_acc, res["KG-LCD"]["acc"], atol=1e-12):
+            raise ValueError(f"{ds} predictions do not match result JSON: "
+                             f"{actual_acc} vs {res['KG-LCD']['acc']}")
         cm = confusion_matrix(f["test_y"], ours["pred"], normalize="true")
         ax = axes[k]
         im = ax.imshow(cm, cmap="Blues", vmin=0, vmax=1)
@@ -305,7 +316,7 @@ def fig_confusion(ds_list=("dermamnist", "bloodmnist"), seed=0):
                             color="white" if cm[i, j] > 0.6 else "#1a1a1a")
         ax.set_xlabel("Predicted label"); ax.set_ylabel("True label")
         ax.set_title(f"{'ab'[k]}) {ds.replace('mnist','MNIST')} "
-                     f"(ACC={res['KG-LCD']['acc']:.3f})")
+                     f"(ACC={actual_acc:.3f})")
         fig.colorbar(im, ax=ax, fraction=0.045, pad=0.02)
     fig.tight_layout()
     save(fig, "fig6_confusion")

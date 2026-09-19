@@ -14,6 +14,9 @@ code/
   kglcd.py             KG-LCD graph construction and inference
   run_experiments.py   baselines, KG-LCD, and ablations
   rerun_ours.py        KG-LCD-only reproduction entry point
+  reproduce_seed0_main.py  non-overwriting main-result reproduction
+  paired_case_analysis.py paired test-case comparison with CNN
+  rebuild_confusion_from_reproduction.py verified confusion figure
   run_analysis.py      sensitivity, noise, efficiency, and modularity
   make_figures.py      figure generation
   make_tables.py       LaTeX table generation
@@ -27,6 +30,9 @@ data/
   *_sweep.npy          saved conductance sweeps
   *_noise.json         label-noise results
   *_efficiency.json    efficiency measurements
+reproduction_2026-09-19/
+  */attempt_*_portable/  verified predictions and manifests
+  paired_case_analysis_reproduced.json  paired uncertainty analysis
 ```
 
 The repository includes the complete released **derived experimental dataset** (about 19 MB). Raw MedMNIST images are distributed by the dataset authors and are not duplicated in this Git repository.
@@ -79,6 +85,10 @@ python code/run_experiments.py --dataset bloodmnist --seed 0
 python code/rerun_ours.py --dataset dermamnist --seed 0
 python code/rerun_ours.py --dataset bloodmnist --seed 0
 
+# Non-overwriting reproduction of the paper's seed-0 KG-LCD rows.
+python code/reproduce_seed0_main.py --dataset dermamnist --attempt fresh_derma
+python code/reproduce_seed0_main.py --dataset bloodmnist --attempt fresh_blood
+
 # Analyses.
 python code/run_analysis.py --dataset dermamnist --seed 0 --task sensitivity
 python code/run_analysis.py --dataset dermamnist --seed 0 --task noise
@@ -92,6 +102,22 @@ python code/make_tables.py
 ```
 
 CPU-only execution is supported. Backbone training takes substantially longer than rerunning KG-LCD from the released embeddings.
+
+## Verified seed-0 artifact reconciliation
+
+The released `data/dermamnist_seed0_ours.npz` is an older per-case output: its accuracy is 77.157%, whereas the paper's result JSON and main table report 77.406% (77.41% rounded). We retained the older file for provenance. The non-overwriting reproductions in `reproduction_2026-09-19/dermamnist/attempt_4_portable/` and `bloodmnist/attempt_2_portable/` reproduce the paper's ACC, macro-F1, and macro-AUC values exactly. Use these predictions for per-case analysis and Figure 6. Each successful attempt includes a manifest with input/code hashes and dependency versions.
+
+The verified case-level comparison with the saved CNN posteriors is in `reproduction_2026-09-19/paired_case_analysis_reproduced.json`. The ACC gains are +0.299 percentage points (DermaMNIST; exact McNemar p=0.377) and +0.058 points (BloodMNIST; p=0.727). These single-seed comparisons do not establish a statistically significant gain over the CNN or estimate variation across independent training runs. The manuscript reports the numeric gains and this uncertainty without claiming repeated-run significance.
+
+To regenerate the analysis or corrected confusion plot from the released predictions:
+
+```bash
+python code/paired_case_analysis.py \
+  --derma-prediction reproduction_2026-09-19/dermamnist/attempt_4_portable/predictions.npz \
+  --blood-prediction reproduction_2026-09-19/bloodmnist/attempt_2_portable/predictions.npz \
+  --output reproduction_2026-09-19/paired_case_analysis_reproduced.json
+python code/rebuild_confusion_from_reproduction.py
+```
 
 ## Knowledge graphs
 

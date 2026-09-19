@@ -1,0 +1,160 @@
+{
+  "design": "paired analysis of specified seed-0 predictions",
+  "reporting_basis": "manuscript main table and specified case-level predictions",
+  "bootstrap_replicates": 20000,
+  "rng_seed": 20260919,
+  "datasets": [
+    {
+      "dataset": "dermamnist",
+      "manuscript_reference_accuracy_rounded": {
+        "KG-LCD": 0.7741,
+        "CNN": 0.7711
+      },
+      "scope": "reproduced predictions match the manuscript's rounded accuracy",
+      "source_files": [
+        "data/dermamnist_seed0_emb.npz",
+        "reproduction_2026-09-19/dermamnist/attempt_4_portable/predictions.npz"
+      ],
+      "source_sha256": {
+        "data/dermamnist_seed0_emb.npz": "4fd3530f54e191ee4e672c54d65a3c9f5342ddfff755f8d3603f3a3727bcba10",
+        "reproduction_2026-09-19/dermamnist/attempt_4_portable/predictions.npz": "99a6e2f692bb48e872ce46c4bc8db1644b1dd4a9896fef22d0e032a03d23268e"
+      },
+      "test_cases": 2005,
+      "cnn_accuracy": 0.771072319201995,
+      "kg_lcd_accuracy": 0.774064837905237,
+      "results_json_kg_lcd_accuracy": 0.774064837905237,
+      "prediction_json_accuracy_gap_pp": 0.0,
+      "accuracy_difference_pp": 0.29925187032418954,
+      "paired_bootstrap_95pct_ci_pp": [
+        -0.24937655860349126,
+        0.8478802992518704
+      ],
+      "kg_lcd_correct_cnn_wrong": 19,
+      "cnn_correct_kg_lcd_wrong": 13,
+      "exact_mcnemar_two_sided_p": 0.37708558747544885,
+      "per_class_recall": [
+        {
+          "class_index": 0,
+          "n": 66,
+          "cnn_recall": 0.36363636363636365,
+          "kg_lcd_recall": 0.4090909090909091
+        },
+        {
+          "class_index": 1,
+          "n": 103,
+          "cnn_recall": 0.6601941747572816,
+          "kg_lcd_recall": 0.6699029126213593
+        },
+        {
+          "class_index": 2,
+          "n": 220,
+          "cnn_recall": 0.4772727272727273,
+          "kg_lcd_recall": 0.4772727272727273
+        },
+        {
+          "class_index": 3,
+          "n": 23,
+          "cnn_recall": 0.0,
+          "kg_lcd_recall": 0.0
+        },
+        {
+          "class_index": 4,
+          "n": 223,
+          "cnn_recall": 0.37668161434977576,
+          "kg_lcd_recall": 0.37668161434977576
+        },
+        {
+          "class_index": 5,
+          "n": 1341,
+          "cnn_recall": 0.9284116331096197,
+          "kg_lcd_recall": 0.9291573452647278
+        },
+        {
+          "class_index": 6,
+          "n": 29,
+          "cnn_recall": 0.6896551724137931,
+          "kg_lcd_recall": 0.7241379310344828
+        }
+      ]
+    },
+    {
+      "dataset": "bloodmnist",
+      "manuscript_reference_accuracy_rounded": {
+        "KG-LCD": 0.9746,
+        "CNN": 0.974
+      },
+      "scope": "reproduced predictions match the manuscript's rounded accuracy",
+      "source_files": [
+        "data/bloodmnist_seed0_emb.npz",
+        "reproduction_2026-09-19/bloodmnist/attempt_2_portable/predictions.npz"
+      ],
+      "source_sha256": {
+        "data/bloodmnist_seed0_emb.npz": "f2af62d4988049a081fb1b96c1317104849c8c04441caf715a6f31e367abcfca",
+        "reproduction_2026-09-19/bloodmnist/attempt_2_portable/predictions.npz": "a706cd0490daae39c65a6b59c74dfbc9bbfd42ade9d62b59668b4d8c52dcbd01"
+      },
+      "test_cases": 3421,
+      "cnn_accuracy": 0.9739842151417714,
+      "kg_lcd_accuracy": 0.974568839520608,
+      "results_json_kg_lcd_accuracy": 0.974568839520608,
+      "prediction_json_accuracy_gap_pp": 0.0,
+      "accuracy_difference_pp": 0.05846243788365975,
+      "paired_bootstrap_95pct_ci_pp": [
+        -0.08769365682548962,
+        0.233849751534639
+      ],
+      "kg_lcd_correct_cnn_wrong": 5,
+      "cnn_correct_kg_lcd_wrong": 3,
+      "exact_mcnemar_two_sided_p": 0.7265625,
+      "per_class_recall": [
+        {
+          "class_index": 0,
+          "n": 244,
+          "cnn_recall": 0.9549180327868853,
+          "kg_lcd_recall": 0.9549180327868853
+        },
+        {
+          "class_index": 1,
+          "n": 624,
+          "cnn_recall": 0.9919871794871795,
+          "kg_lcd_recall": 0.9919871794871795
+        },
+        {
+          "class_index": 2,
+          "n": 311,
+          "cnn_recall": 0.977491961414791,
+          "kg_lcd_recall": 0.977491961414791
+        },
+        {
+          "class_index": 3,
+          "n": 579,
+          "cnn_recall": 0.9447322970639033,
+          "kg_lcd_recall": 0.9464594127806563
+        },
+        {
+          "class_index": 4,
+          "n": 243,
+          "cnn_recall": 0.9917695473251029,
+          "kg_lcd_recall": 0.9876543209876543
+        },
+        {
+          "class_index": 5,
+          "n": 284,
+          "cnn_recall": 0.9436619718309859,
+          "kg_lcd_recall": 0.9471830985915493
+        },
+        {
+          "class_index": 6,
+          "n": 666,
+          "cnn_recall": 0.975975975975976,
+          "kg_lcd_recall": 0.9774774774774775
+        },
+        {
+          "class_index": 7,
+          "n": 470,
+          "cnn_recall": 1.0,
+          "kg_lcd_recall": 1.0
+        }
+      ]
+    }
+  ]
+}

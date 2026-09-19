@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "dataset": "dermamnist",
+  "attempt": "attempt_4_portable",
+  "seed": 0,
+  "protocol": "run_kglcd defaults: validation-tuned alpha and eta, fold_val=True, two rounds",
+  "split_sizes": [
+    7007,
+    1003,
+    2005
+  ],
+  "n_classes": 7,
+  "input_sha256": {
+    "dermamnist_seed0_emb.npz": "4fd3530f54e191ee4e672c54d65a3c9f5342ddfff755f8d3603f3a3727bcba10",
+    "reproduce_seed0_main.py": "b85849091d390343fcbcff941631edcd8bd5ffc6b8dc5dc2f68629ad9520c3e3",
+    "kglcd.py": "0a2e770bc7c671abf5b61c9ef1aaa31903010f531a65b0b8bd65d9504d69ede6",
+    "run_experiments.py": "2d048eeb3627333b50930b47c1a002cdfe94eadceb4620e849a9af383cd017ce"
+  },
+  "environment": {
+    "python": "3.9.23",
+    "numpy": "1.26.3",
+    "scipy": "1.10.1",
+    "scikit_learn": "1.2.2",
+    "torch": "2.1.1+cpu"
+  },
+  "started_unix": 1789810277.7767897,
+  "result": {
+    "acc": 0.774064837905237,
+    "f1": 0.511271933393776,
+    "auc": 0.9333589269237953,
+    "eta_tuned": 0.3,
+    "alpha_tuned": 0.05,
+    "runtime_s": 97.71043753623962
+  },
+  "predictions_sha256": "99a6e2f692bb48e872ce46c4bc8db1644b1dd4a9896fef22d0e032a03d23268e",
+  "finished_unix": 1789810376.8482194
+}

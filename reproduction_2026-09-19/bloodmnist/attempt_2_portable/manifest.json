@@ -1,0 +1,37 @@
+{
+  "status": "complete",
+  "dataset": "bloodmnist",
+  "attempt": "attempt_2_portable",
+  "seed": 0,
+  "protocol": "run_kglcd defaults: validation-tuned alpha and eta, fold_val=True, two rounds",
+  "split_sizes": [
+    11959,
+    1712,
+    3421
+  ],
+  "n_classes": 8,
+  "input_sha256": {
+    "bloodmnist_seed0_emb.npz": "f2af62d4988049a081fb1b96c1317104849c8c04441caf715a6f31e367abcfca",
+    "reproduce_seed0_main.py": "b85849091d390343fcbcff941631edcd8bd5ffc6b8dc5dc2f68629ad9520c3e3",
+    "kglcd.py": "0a2e770bc7c671abf5b61c9ef1aaa31903010f531a65b0b8bd65d9504d69ede6",
+    "run_experiments.py": "2d048eeb3627333b50930b47c1a002cdfe94eadceb4620e849a9af383cd017ce"
+  },
+  "environment": {
+    "python": "3.9.23",
+    "numpy": "1.26.3",
+    "scipy": "1.10.1",
+    "scikit_learn": "1.2.2",
+    "torch": "2.1.1+cpu"
+  },
+  "started_unix": 1789810385.4027486,
+  "result": {
+    "acc": 0.974568839520608,
+    "f1": 0.9730443001572489,
+    "auc": 0.9988403602085716,
+    "eta_tuned": 0.7,
+    "alpha_tuned": 0.05,
+    "runtime_s": 193.7057671546936
+  },
+  "predictions_sha256": "a706cd0490daae39c65a6b59c74dfbc9bbfd42ade9d62b59668b4d8c52dcbd01",
+  "finished_unix": 1789810583.2633617
+}
